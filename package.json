@@ -1,0 +1,8 @@
+{
+  "name": "smdp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "http://211.149.154.87/poc/smdp.git",
+  "author": "王喆 <nasa127@gmail.com>",
+  "license": "MIT"
+}

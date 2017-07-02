@@ -1,0 +1,46 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+.navbar {
+    @include grid-collapse($navbar-grid);
+    @include grid-container($navbar-grid);
+    height: $navbar-height;
+    background-color: $color-white;
+    box-shadow: $box-shadow-2;
+
+    .logo-wapper {
+        @include grid-column(2, $navbar-grid);
+        height: $navbar-height;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        background-color: $brand-primary;
+        color: $color-white;
+        font-size: $navbar-menu-logo-fontsite;
+        cursor: default;
+        img {    
+            height: 40px;
+        }
+    }
+    .avatar-wapper {
+        @include grid-column(10, $navbar-grid);
+        height: $navbar-height;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: $margin-base;
+        > .avatar {
+            width: $navbar-menu-avatar-width;
+            height: $navbar-menu-avatar-height;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            img {
+                width: 80%;
+                height: 80%;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+.user_menu {
+    box-shadow: $box-shadow-4;
+}

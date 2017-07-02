@@ -1,0 +1,58 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.tabbar {
+    height:$tabbar-outer-height;
+    display: inline-block;
+    //background-color: $color-white;
+    //border-top-left-radius: $radius-min;
+    //border-top-right-radius: $radius-min;
+    .tabbar-wapper {
+        // margin: $margin-base;
+        .tabbar-wapper-inner {
+            display: flex;
+            justify-content: flex-start;
+            height:$tabbar-outer-height;
+            //margin-left: $margin-base;
+            //margin-right: $margin-base;
+            .tabbar-item{
+                &:last-child {
+                    .tabbar-item-inner{
+                        border-right: 0px;
+                    }
+                }
+
+                width: $tabbar-item-width;
+                height:$tabbar-item-height;
+                // margin-top: $margin-base;
+                margin-right: 2px;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                background-color: #fff;
+
+                .tabbar-item-inner {
+                    width: 100%;
+                    height: 60%;
+                    font-size: $tabbar-item-fontsite;
+                    color: $gray;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items:center;
+                    background-color: #fff;
+                }
+
+                &.active {
+                    .tabbar-item-inner {
+                        cursor: default;
+                        color: $brand-primary;
+                    }
+                    height: $tabbar-outer-height;
+                    // border-bottom: 2px solid $brand-primary;
+
+                }
+            }
+        }
+    }
+}

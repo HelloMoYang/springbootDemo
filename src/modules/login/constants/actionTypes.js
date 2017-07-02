@@ -1,0 +1,4 @@
+export default {
+    LOGIN_SAY_HELLO: 'LOGIN_SAY_HELLO',
+    COMMON_SAY_HELLO: 'COMMON_SAY_HELLO'
+}

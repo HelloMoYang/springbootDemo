@@ -1,0 +1,12 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+.editable-add-btn {
+  margin-top: $margin-base;
+}
+.editable-row-text {
+  padding: 5px;
+}
+
+.editable-row-operations a {
+  margin-right: 8px;
+}

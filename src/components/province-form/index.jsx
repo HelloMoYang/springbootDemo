@@ -26,11 +26,11 @@ class ProvinceForm extends React.Component {
   render() {
     const { formLayout } = this.state;
     const formItemLayout = formLayout === 'horizontal' ? {
-      labelCol: { span: 2 },
-      wrapperCol: { span: 8 },
+      labelCol: { span: 6},
+      wrapperCol: { span: 16 },
     } : null;
     const buttonItemLayout = formLayout === 'horizontal' ? {
-      wrapperCol: { span: 7, offset: 4 },
+      wrapperCol: { span: 20, offset: 4 },
     } : null;
     return (
       <div>
@@ -58,10 +58,6 @@ class ProvinceForm extends React.Component {
             {...formItemLayout}
           >
             <Input placeholder="input placeholder" />
-          </FormItem>
-          <FormItem {...buttonItemLayout}>
-            <Button type="primary" size="large" className='common-btn'>提交</Button>
-            <Button type="primary" size="large" className='common-btn'>取消</Button>
           </FormItem>
         </Form>
       </div>

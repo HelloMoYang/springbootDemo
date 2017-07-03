@@ -5,6 +5,7 @@ const TabPane = Tabs.TabPane;
 
 import ProfIccid from '../../../components/prof-iccid/index'
 import ProfEid from '../../../components/prof-eid/index'
+import ProfCount from '../../../components/prof-count/index'
 import '../style/index'
 
 
@@ -40,7 +41,9 @@ class List extends React.Component {
                         <ProfEid searchData={this.searchData} />
 
                     </TabPane>
-                    <TabPane tab=" Profile 统计 " key="3">Content of Tab Pane 3</TabPane>
+                    <TabPane tab=" Profile 统计 " key="3">
+                        <ProfCount />
+                    </TabPane>
                 </Tabs>
             </div>
         );

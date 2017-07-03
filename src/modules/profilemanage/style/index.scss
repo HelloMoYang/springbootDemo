@@ -1,0 +1,11 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.profilemanage {
+    padding: 15px;
+    .filter {
+        margin: 0 $margin-base;
+        padding: $margin-base 0;
+        overflow: hidden;
+    }
+}

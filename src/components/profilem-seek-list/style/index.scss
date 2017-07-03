@@ -1,0 +1,15 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.seek-list {
+    .seek-filter {
+        margin: 0 $margin-base;
+        // border-bottom: 1px solid $gray-lightest;
+        overflow: hidden;
+        .ant-table-pagination {
+            float: inherit;
+            text-align: center;
+        }       
+    }
+}
+

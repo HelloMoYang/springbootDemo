@@ -11,6 +11,7 @@ import 'antd/lib/date-picker/style'
 
 import * as Select from 'antd/lib/select'
 import 'antd/lib/select/style'
+const Option = Select.Option;
 
 import * as Button from 'antd/lib/button'
 import 'antd/lib/button/style'
@@ -26,7 +27,8 @@ class ProfCount extends React.Component {
             startValue: null,
             endValue: null,
             endOpen: false,
-            city: 'beijing'
+            city: 'beijing',
+            city2: 'beijing'
         }
     }
     searchData(value) {
@@ -35,23 +37,12 @@ class ProfCount extends React.Component {
     }
     useSearch() {
         let { startValue, endValue, endOpen, city } = this.state
-        console.log(startValue, endValue, city, '--');
+        console.log(startValue, endValue, city, '--1');
     }
 
-    disabledStartDate = (startValue) => {
-        let endValue = this.state.endValue;
-        if (!startValue || !endValue) {
-            return false;
-        }
-        return startValue.valueOf() > endValue.valueOf();
-    }
-
-    disabledEndDate = (endValue) => {
-        let startValue = this.state.startValue;
-        if (!endValue || !startValue) {
-            return false;
-        }
-        return endValue.valueOf() <= startValue.valueOf();
+    countSearch() {
+        let { city2 } = this.state
+        console.log(city2, '--2');
     }
 
     onChange = (field, value) => {
@@ -70,90 +61,60 @@ class ProfCount extends React.Component {
         this.onChange('endValue', d)
     }
 
-    handleStartOpenChange = (open) => {
-        if (!open) {
-            this.setState({ endOpen: true })
-        }
-    }
-
-    handleEndOpenChange = (open) => {
-        this.setState({ endOpen: open })
-    }
     ChangeCity = (city) => {
         this.setState({ city: city })
+    }
+    ChangeCity2 = (city) => {
+        this.setState({ city2: city })
     }
 
 
     render() {
         const columns1 = [
             {
-                title: 'EID',
+                title: '归属省',
                 dataIndex: 'a',
                 key: 'a',
             }, {
-                title: 'ICCID',
+                title: '操作命令',
                 dataIndex: 'b',
                 key: 'b',
             }, {
-                title: '归属省',
+                title: 'Profile-Type',
                 dataIndex: 'c',
                 key: 'c',
             }, {
-                title: 'Profile-Type',
+                title: '操作时间',
                 dataIndex: 'd',
                 key: 'd',
             }, {
-                title: 'Profile状态',
+                title: '成功',
                 dataIndex: 'd',
                 key: 'd',
             }, {
-                title: '创建时间',
+                title: '失败',
                 dataIndex: 'e',
                 key: 'e',
-            }, {
-                title: 'IMSI',
-                dataIndex: 'f',
-                key: 'f',
-            }, {
-                title: 'Matching-ID',
-                dataIndex: 'g',
-                key: 'g',
-            }, {
-                title: '绑定状态',
-                dataIndex: 'h',
-                key: 'h',
             }
         ]
 
         const columns2 = [
             {
-                title: 'EID',
+                title: '归属省',
                 dataIndex: 'a',
                 key: 'a',
             }, {
-                title: 'ICCID',
+                title: '未使用Profile',
                 dataIndex: 'b',
                 key: 'b',
             }, {
-                title: '操作时间',
+                title: '已使用Profile',
                 dataIndex: 'c',
                 key: 'c',
             }, {
                 title: '操作命令',
                 dataIndex: 'd',
                 key: 'd',
-            }, {
-                title: '操作结果',
-                dataIndex: 'e',
-                key: 'e',
-            }, {
-                title: '当前状态',
-                dataIndex: 'f',
-                key: 'f',
-            }, {
-                title: '完成时间',
-                dataIndex: 'g',
-                key: 'g',
             }
         ]
 
@@ -173,24 +134,18 @@ class ProfCount extends React.Component {
                         </Select>&emsp;&emsp;
 
                         时间 : <DatePicker
-                            //disabledDate={this.disabledStartDate}
-                            showTime
-                            //format="YYYY-MM-DD"
-                            value={startValue}
                             placeholder="开始时间"
                             onChange={this.onStartChange.bind(this)}
-                        //onOpenChange={this.handleStartOpenChange}
-                        />&nbsp;至&nbsp;
-                         <DatePicker
-                            //disabledDate={this.disabledEndDate}
-                            showTime
-                            //format="YYYY-MM-DD"
-                            value={endValue}
+                            format="YYYY-MM-DD"
+
+                        /> &nbsp;至&nbsp;
+
+                        <DatePicker
                             placeholder="结束时间"
                             onChange={this.onEndChange.bind(this)}
-                            open={endOpen}
-                        //onOpenChange={this.handleEndOpenChange}
-                        />
+                            format="YYYY-MM-DD"
+
+                        /> &nbsp;&nbsp;
                         <Button type="primary" onClick={this.useSearch.bind(this)}>查询</Button>
                     </div>
                     <div className='firstTable'>
@@ -198,9 +153,21 @@ class ProfCount extends React.Component {
                     </div>
                 </div>
 
+                <p className='title'>Profile库存统计</p>
+                <div className='panel'>
+                    <div>
+                        请输入查询省份 : &emsp;
+                        <Select defaultValue="beijing" style={{ width: 120 }} onChange={this.ChangeCity2} >
+                            <Option value="beijing">北京</Option>
+                            <Option value="shagnhai">上海</Option>
+                            <Option value="hangzhou">杭州</Option>
+                        </Select>&emsp;&emsp;
 
-                <div>
-                    <Table size='small' dataSource={[]} columns={columns2} />
+                        <Button type="primary" onClick={this.countSearch.bind(this)}>查询</Button>
+                    </div>
+                    <div className='firstTable'>
+                        <Table size='small' dataSource={[]} columns={columns2} />
+                    </div>
                 </div>
 
             </div>

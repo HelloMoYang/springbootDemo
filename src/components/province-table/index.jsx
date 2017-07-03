@@ -261,7 +261,10 @@ handleAdd = () => {
      return (
       <div>
         <Table bordered dataSource={dataSource} columns={columns} pagination={false} />
-        <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>  
+        <div className='data-btn'>
+          <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>  
+          <Button className="editable-add-btn" >刷新省数据</Button>      
+        </div>
         <Modal
           title="新增"
           visible={this.state.visible}
@@ -273,6 +276,7 @@ handleAdd = () => {
         >
           <ProvinceForm/>
         </Modal>
+        
       </div>     
     );
     

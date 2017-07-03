@@ -1,6 +1,11 @@
 @import '../../../style/vars';
 @import '../../../style/neat/neat';
-.editable-add-btn {
+.data-btn{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.editable-add-btn,.editable-refresh-btn {
   margin-top: $margin-base;
 }
 .editable-row-text {

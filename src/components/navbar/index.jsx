@@ -36,13 +36,14 @@ class Navbar extends React.Component {
                     <img src={require('../../img/logo.png')} />
                 </div>
                 <div className='avatar-wapper'>
-                    <div className='avatar'>
-                        <Dropdown overlay={menu}>
-                            <a className="ant-dropdown-link" href="javascript:;">
-                                <img src="http://120.55.114.48/api/uploads/pic/2017-6-16/02f75fd0-52a4-11e7-8d76-2f488cbc287c.png" />
-                            </a>
-                        </Dropdown>
-                    </div>
+                    {!this.props.hideAvatar ?
+                        <div className='avatar'>
+                            <Dropdown overlay={menu}>
+                                <a className="ant-dropdown-link" href="javascript:;">
+                                    <img src="http://120.55.114.48/api/uploads/pic/2017-6-16/02f75fd0-52a4-11e7-8d76-2f488cbc287c.png" />
+                                </a>
+                            </Dropdown>
+                        </div> : <div>欢迎您，请登录</div>}
                 </div>
             </div>
         );

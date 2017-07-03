@@ -13,18 +13,20 @@ class Edit extends React.Component {
 
     }
     render() {
+        let id = this.props.params.id
+        let sectionHeader = id ? '编辑用户' : '创建新用户'
         return (
             <div className="page">
                 <div className="page-content">
-                    <div className='module-wapper' style={{ padding: '15px' }}>
+                    <div className='module-wapper' style={{ margin: '15px' }}>
                         <div className='module-wapper-inner'>
-                            <SectionHeader title='创建新用户'></SectionHeader>
+                            <SectionHeader title={sectionHeader}></SectionHeader>
                             <section style={{ minHeight: `${window.innerHeight - 245}` }}>
                                 <OperatormanageForm />
                             </section>
                             <section className='actions'>
                                 <Button type="primary">提交</Button>
-                                <Button>取消</Button>
+                                <Button onClick={() => { global.hashHistory.goBack() }}>取消</Button>
                             </section>
                         </div>
                     </div>

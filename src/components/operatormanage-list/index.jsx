@@ -66,11 +66,16 @@ class OperatormanageList extends React.Component {
             </div>
         )
     }
+    goCreate() {
+        if (this.props.goCreate) {
+            this.props.goCreate()
+        }
+    }
     render() {
         return (
             <div className='operatormanage-list'>
                 <div className='operatormanage-sort'>
-                    <Button type="primary" className='btn-create-type' >创建新用户</Button>
+                    <Button type="primary" className='btn-create-type' onClick={this.goCreate.bind(this)}>创建新用户</Button>
                     <Button type="primary" className='btn-create-type' >显示全部</Button>
                     <Button type="primary" className='btn-create-type' >查询</Button>
                     <Search

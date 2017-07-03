@@ -12,6 +12,7 @@ import 'antd/lib/popconfirm/style'
 import './style/index'
 import * as Modal from 'antd/lib/modal'
 import 'antd/lib/modal/style'
+import ProvinceForm from'../province-form/index'
 const confirm = Modal.confirm;
 class EditableCell extends React.Component {
   state = {
@@ -220,6 +221,17 @@ onDelete = (index) => {
         }
     });
   }
+state = { visible: false }
+showModal = () => {
+    this.setState({
+      visible: true,
+    });
+}
+hideModal = () => {
+    this.setState({
+      visible: false,
+    });
+}
 handleAdd = () => {
     // const { count, data} = this.state;
     // const newData = {
@@ -233,16 +245,7 @@ handleAdd = () => {
     //     data: [...data, newData],
     //     count: count + 1,
     // });
-    confirm({
-     title: 'Do you want to delete these items?',
-    content: 'When clicked the OK button, this dialog will be closed after 1 second',
-    onOk() {
-      return new Promise((resolve, reject) => {
-        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
-    },
-    onCancel() {},
-  });
+    
 }
   render() {
     const { data } = this.state;
@@ -258,8 +261,19 @@ handleAdd = () => {
      return (
       <div>
         <Table bordered dataSource={dataSource} columns={columns} pagination={false} />
-        <Button className="editable-add-btn" onClick={this.handleAdd}>新增省数据</Button>       
-      </div>
+        <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>  
+        <Modal
+          title="新增"
+          visible={this.state.visible}
+          onOk={this.hideModal}
+          onCancel={this.hideModal}
+          cancelText="取消"
+          okText="提交"
+          
+        >
+          <ProvinceForm/>
+        </Modal>
+      </div>     
     );
     
   }

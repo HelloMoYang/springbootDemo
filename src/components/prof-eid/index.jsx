@@ -96,7 +96,7 @@ class ProfEid extends React.Component {
 
         let { seaTxt } = this.state
         return (
-            <div className='tab-iccid'>
+            <div className='tab-eid'>
                 <div>
                     请输入EID :&emsp;
                     <Search

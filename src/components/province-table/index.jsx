@@ -12,7 +12,7 @@ import 'antd/lib/popconfirm/style'
 import './style/index'
 import * as Modal from 'antd/lib/modal'
 import 'antd/lib/modal/style'
-import ProvinceForm from'../province-form/index'
+import ProvinceForm from '../province-form/index'
 const confirm = Modal.confirm;
 class EditableCell extends React.Component {
   state = {
@@ -37,7 +37,7 @@ class EditableCell extends React.Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.editable !== this.state.editable ||
-           nextState.value !== this.state.value;
+      nextState.value !== this.state.value;
   }
   handleChange(e) {
     const value = e.target.value;
@@ -64,7 +64,6 @@ class EditableCell extends React.Component {
     );
   }
 }
-
 class ProvinceTable extends React.Component {
   constructor(props) {
     super(props);
@@ -110,17 +109,18 @@ class ProvinceTable extends React.Component {
             }
           </div>
         );
-    }}, {
+      }
+    }, {
       title: '删除',
       dataIndex: 'del',
       render: (text, record, index) => {
         return (
           this.state.data.length > 1 ?
-          (
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(index)}>
-              <a href="#">Delete</a>
-            </Popconfirm>
-          ) : null
+            (
+              <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(index)}>
+                <a href="#">Delete</a>
+              </Popconfirm>
+            ) : null
         );
       },
     }];
@@ -140,10 +140,10 @@ class ProvinceTable extends React.Component {
           value: 'Edward King 0',
         },
         address: {
-          editable: false,            
+          editable: false,
           value: 'http://211.149.154.87/poc/smdp.git',
         },
-      },{
+      }, {
         key: '1',
         cardId: {
           editable: false,
@@ -158,7 +158,7 @@ class ProvinceTable extends React.Component {
           value: 'Edward King 0',
         },
         address: {
-          editable: false,            
+          editable: false,
           value: 'http://211.149.154.87/poc/smdp.git',
         },
       }],
@@ -175,7 +175,7 @@ class ProvinceTable extends React.Component {
       value={text}
       onChange={value => this.handleChange(key, index, value)}
       status={status}
-    
+
     />);
   }
   handleChange(key, index, value) {
@@ -208,31 +208,31 @@ class ProvinceTable extends React.Component {
       });
     });
   }
-onDelete = (index) => {
+  onDelete = (index) => {
     const data = [...this.state.data];
     data.splice(index, 1);
     this.setState({ data }, () => {
-        if(Object.keys(data[index]).length>=2){
-            Object.keys(data[index]).forEach((item) => {
-                if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-                delete data[index][item].status;
-                }
-            });
-        }
+      if (Object.keys(data[index]).length >= 2) {
+        Object.keys(data[index]).forEach((item) => {
+          if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
+            delete data[index][item].status;
+          }
+        });
+      }
     });
   }
-state = { visible: false }
-showModal = () => {
+  // state = { visible: false }
+  showModal = () => {
     this.setState({
       visible: true,
     });
-}
-hideModal = () => {
+  }
+  hideModal = () => {
     this.setState({
       visible: false,
     });
-}
-handleAdd = () => {
+  }
+  handleAdd = () => {
     // const { count, data} = this.state;
     // const newData = {
     //     key: count,
@@ -245,8 +245,8 @@ handleAdd = () => {
     //     data: [...data, newData],
     //     count: count + 1,
     // });
-    
-}
+
+  }
   render() {
     const { data } = this.state;
     const dataSource = data.map((item) => {
@@ -258,12 +258,12 @@ handleAdd = () => {
     });
     const columns = this.columns;
     // return <Table bordered dataSource={dataSource} columns={columns} />;
-     return (
+    return (
       <div>
         <Table bordered dataSource={dataSource} columns={columns} pagination={false} />
         <div className='data-btn'>
-          <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>  
-          <Button className="editable-add-btn" >刷新省数据</Button>      
+          <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>
+          <Button className="editable-add-btn" >刷新省数据</Button>
         </div>
         <Modal
           title="新增"
@@ -272,14 +272,13 @@ handleAdd = () => {
           onCancel={this.hideModal}
           cancelText="取消"
           okText="提交"
-          
+
         >
-          <ProvinceForm/>
+          <ProvinceForm />
         </Modal>
-        
-      </div>     
+
+      </div>
     );
-    
   }
 }
 

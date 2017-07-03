@@ -10,6 +10,9 @@ import 'antd/lib/form/style'
 import * as Input from 'antd/lib/input'
 import 'antd/lib/input/style'
 
+import Headroom from 'react-headroom'
+import Navbar from '../../../components/navbar/index'
+
 import emitter from '../../common/emitter.js'
 
 import * as notification from 'antd/lib/notification'
@@ -48,7 +51,7 @@ class Login extends React.Component {
                     if (data) {
                         emitter.emit('notification', '登录成功！', '', 'success')
                         setTimeout(() => {
-                            global.hashHistory.push(self.getPath(self.props.user.permissions[0].route))
+                            global.hashHistory.push('/profilequery/list')
                         }, 1000)
                     }
                 })
@@ -58,24 +61,24 @@ class Login extends React.Component {
     getPath(permissions) {
         let path = ''
         switch (permissions) {
-        case 'users':
-            path = '/users/users'
-            break;
-        case 'device':
-            path = '/device/list'
-            break;
-        case 'resources':
-            path = '/resources/app/list'
-            break;
-        case 'plan':
-            path = '/plan/list'
-            break;
-        case 'publish':
-            path = '/publish/list'
-            break;
-        case 'upgrade':
-            path = '/upgrade/mext'
-            break;
+            case 'users':
+                path = '/users/users'
+                break;
+            case 'device':
+                path = '/device/list'
+                break;
+            case 'resources':
+                path = '/resources/app/list'
+                break;
+            case 'plan':
+                path = '/plan/list'
+                break;
+            case 'publish':
+                path = '/publish/list'
+                break;
+            case 'upgrade':
+                path = '/upgrade/mext'
+                break;
         }
         return path
     }
@@ -114,14 +117,18 @@ class Login extends React.Component {
     render() {
         let h = window.innerHeight
         return (
-            <div className="login" style={{ height: h + 'px' }}>
-                <div className="login-box">
-                    <div className="form">
-                        <h2>MEXT</h2>
-                        {this.renderForm()}
+            <div>
+                <Headroom>
+                    <Navbar hideAvatar />
+                </Headroom>
+                <div className="login" style={{ height: h + 'px' }}>
+                    <div className="login-box">
+                        <div className="form">
+                            <h2>SMDP</h2>
+                            {this.renderForm()}
+                        </div>
                     </div>
                 </div>
-
             </div>
         );
     }

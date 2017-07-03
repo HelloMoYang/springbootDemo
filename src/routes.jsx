@@ -44,14 +44,14 @@ const loginFun = function (store, callback) {
     // if (!loginFlag) {
     //     store.dispatch({ type: ActionTypes.COMMON_SAY_HELLO, loading: true })
     // }
-    // require.ensure([], function (require) {
-    //     let r = require('./modules/login/reducers/index').default;
-    //     injectAsyncReducer(store, 'LOGIN', r);
-    //     const m = require('./modules/login/routes/index')
-    //     callback(null, m.default)
-    //     store.dispatch({ type: ActionTypes.COMMON_SAY_HELLO, loading: false })
-    //     loginFlag = true
-    // }, 'login')
+    require.ensure([], function (require) {
+        let r = require('./modules/login/reducers/index').default;
+        injectAsyncReducer(store, 'LOGIN', r);
+        const m = require('./modules/login/routes/index')
+        callback(null, m.default)
+        // store.dispatch({ type: ActionTypes.COMMON_SAY_HELLO, loading: false })
+        // loginFlag = true
+    }, 'login')
 }
 export default function createRoutes(store) {
     const routes = [{

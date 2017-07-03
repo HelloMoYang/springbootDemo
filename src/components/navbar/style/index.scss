@@ -26,6 +26,7 @@
         height: $navbar-height;
         display: flex;
         justify-content: flex-end;
+        align-items: center;
         padding-right: $margin-base;
         > .avatar {
             width: $navbar-menu-avatar-width;

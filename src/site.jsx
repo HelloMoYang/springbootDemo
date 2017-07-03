@@ -9,6 +9,10 @@ import Sidebar from './components/sidebar/index'
 import * as Spin from 'antd/lib/spin'
 import 'antd/lib/spin/style'
 
+import emitter from './modules/common/emitter.js'
+
+import LoginActionCreatorsMap from './modules/login/actions/homeActions'
+
 class Site extends React.Component {
     static contextTypes = {
         router: React.PropTypes.any.isRequired
@@ -17,12 +21,10 @@ class Site extends React.Component {
         global.hashHistory.push(`/${key}`)
     }
     logout() {
-        this.props.loginActions.logout(() => {
-            emitter.emit('notification', '退出成功', '', 'success')
-            setTimeout(() => {
-                global.hashHistory.push('/login/login')
-            }, 1000)
-        })
+        emitter.emit('notification', '退出成功', '', 'success')
+        setTimeout(() => {
+            global.hashHistory.push('/login/login')
+        }, 1500)
     }
     renderNavbar() {
         return (

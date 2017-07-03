@@ -8,7 +8,6 @@ import Login from '../views/login'
 function mapProps(state) {
     return {
         name: state.LOGIN.name,
-        user: state.COMMON.user,
     }
 }
 function mapDispatchToProps(dispatch) {

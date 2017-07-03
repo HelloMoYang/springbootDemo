@@ -6,15 +6,20 @@ body {
 .layout-full {
     @include grid-collapse($layout-grid);
     @include grid-container($layout-grid);
-    height: 100%;
+    overflow: hidden;
+    min-height: 100%;
     .sidebar {
         @include grid-column(2, $layout-grid);
-        height: 100%;
+        // height: 100%;
         background-color: #fff;
+        padding-bottom: 2000px;
+        margin-bottom: -2000px;
     }
     .page {
         @include grid-column(10, $layout-grid);
-        min-height: calc(100% - 55px);
+        // min-height: calc(100% - 55px);
+        padding-bottom: 2000px;
+        margin-bottom: -2000px;
 
         .page-content {
             // @include grid-column(14, $layout-grid);

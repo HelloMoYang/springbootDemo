@@ -1,0 +1,11 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+.tab-iccid{
+    .ant-table-small .ant-table-header > table, .ant-table-small .ant-table-body > table{
+        padding:0
+    }
+    .firstTable{
+        margin: 15px 0;
+    }
+}
+   

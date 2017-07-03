@@ -1,0 +1,29 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+.operatormanage-list {
+    .operatormanage-sort{
+        padding: $margin-base 0;
+        border-bottom: 1px solid $gray-lightest;
+        overflow: hidden;
+        margin-bottom: $margin-base;
+        .title{
+            display: inline-block;
+            color: #9e9e9e;
+            text-indent: 20px;
+            margin-right: $margin-min;
+            font-size: 14px;
+            float: right;
+            line-height: 28px;
+        }
+        button {
+            float: right;
+            margin-left: $margin-base;
+            width: 100px;
+        }
+        .btn-create-type {
+            margin-left: $margin-base;
+            
+        }
+    }  
+}

@@ -1,0 +1,29 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat';
+
+//== operatormanage form
+$operatormanage-form-grid-three: (
+  columns: 3,
+  gutter: 0px,
+);
+.operatormanage-form {
+    .ant-form-item{
+        margin-bottom: 8px;
+    }
+    .operatormanage-form-grid-three{
+        @include grid-collapse($operatormanage-form-grid-three);
+        @include grid-container($operatormanage-form-grid-three);
+        .operatormanage-form-grid-three-column-one{
+            @include grid-column(1, $operatormanage-form-grid-three);
+            .btn-create-type {
+                float: right;
+                margin-right: 50%;
+                width: 80px;
+            }
+            .btn-install{
+                width: 80px;
+                margin-left: $margin-base;
+            }
+        }
+    }  
+}

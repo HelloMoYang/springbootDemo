@@ -7,6 +7,9 @@ class List extends React.Component {
         super(props);
 
     }
+    goCreate() {
+        global.hashHistory.push(`operatormanage/create`)
+    }
     componentWillMount() {
 
     }
@@ -14,11 +17,13 @@ class List extends React.Component {
         return (
             <div className="page">
                 <div className="page-content">
-                    <div className='module-wapper-inner' style={{ padding: '15px' }}>
-                        <SectionHeader title='操作员管理'></SectionHeader>
-                        <section style={{ minHeight: `${window.innerHeight - 245}` }}>
-                            <OperatormanageList />
-                        </section>
+                    <div className='module-wapper' style={{ margin: '15px' }}>
+                        <div className='module-wapper-inner'>
+                            <SectionHeader title='操作员管理'></SectionHeader>
+                            <section style={{ minHeight: `${window.innerHeight - 245}` }}>
+                                <OperatormanageList goCreate={this.goCreate} />
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>

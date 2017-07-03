@@ -8,7 +8,10 @@ export default [
         path: 'list',
         component: List
     }, {
-        path: 'edit',
+        path: 'create',
         component: Edit
-    },
+    }, {
+        path: 'edit/:id',
+        component: Edit
+    }
 ]

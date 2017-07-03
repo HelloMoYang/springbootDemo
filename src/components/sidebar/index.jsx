@@ -13,16 +13,6 @@ class Sidebar extends React.Component {
         let path = e.target.getAttribute('data-href')
         navClick ? navClick(path) : null
     }
-    // renderMenus() {
-    //     let { data } = this.props
-    //     return data.map((item, i) => {
-    //         return (
-    //             <Menu.Item key={item.key}>
-    //                 <a onClick={this.clickMenuHandler.bind(this)} data-href={item.key} href="javascript:;">{item.name}</a>
-    //             </Menu.Item>
-    //         )
-    //     })
-    // }
     renderMenus() {
         let { navClick, isActive, data } = this.props
         return data.map((item, i) => {

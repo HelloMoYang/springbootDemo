@@ -8,9 +8,9 @@ import * as Input from 'antd/lib/input'
 import 'antd/lib/input/style'
 import * as Button from 'antd/lib/button'
 import 'antd/lib/button/style'
-import PfilemImpList from '../../../components/profilem-list/index'
+import PfilemExpList from '../../../components/profilem-exp-list/index'
 
-class List extends React.Component {
+class Export extends React.Component {
     doImport() {
 
     }
@@ -31,12 +31,12 @@ class List extends React.Component {
         let tab_data = [
             {
                 name: '批量导入',
-                active: true,
+                active: false,
                 key: 'import'
             },
             {
                 name: '批量注销',
-                active: false,
+                active: true,
                 key: 'export'
             },{
                 name: '日志查询',
@@ -58,16 +58,11 @@ class List extends React.Component {
                                         <Option value="河北">河北</Option>
                                         <Option value="天津">天津</Option>
                                     </Select>
-                                    请选择批量生成profile的导入文件:
-                                    <Input placeholder="file path" style={{ width: 150 }}/>
-                                    <Button>选择文件</Button>
-                                    <span>文件记录数：<e>20</e></span>
-                                    <span>成功导入数：<e>20</e></span>
-                                    <span>失败数：<e>20</e></span>
+                                    <Button>查询</Button>
                                 </div>
                             </section>
                             <section>
-                                <PfilemImpList />
+                                <PfilemExpList />
                             </section>
                             <section className=''>
                                 <Button onClick={this.doImport.bind(this)}>结果导出</Button>
@@ -81,4 +76,9 @@ class List extends React.Component {
     }
 }
 
-export default List;
+export default Export;
+
+
+
+
+

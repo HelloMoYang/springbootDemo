@@ -20,10 +20,10 @@ class List extends React.Component {
         return (
             <div className="page">
                 <div className="page-content">
-                    <div className='module-wapper' style={{ margin: '15px' }}>
+                    <div className='module-wapper'>
                         <div className='module-wapper-inner'>
                             <SectionHeader title='操作员管理'></SectionHeader>
-                            <section style={{ minHeight: `${window.innerHeight - 245}` }}>
+                            <section style={{ minHeight: `${window.innerHeight - 185}` }}>
                                 <OperatormanageList
                                     goCreate={this.goCreate}
                                     goEdit={this.goEdit}

@@ -18,7 +18,7 @@ class Edit extends React.Component {
         return (
             <div className="page">
                 <div className="page-content">
-                    <div className='module-wapper' style={{ margin: '15px' }}>
+                    <div className='module-wapper'>
                         <div className='module-wapper-inner'>
                             <SectionHeader title={sectionHeader}></SectionHeader>
                             <section style={{ minHeight: `${window.innerHeight - 245}` }}>

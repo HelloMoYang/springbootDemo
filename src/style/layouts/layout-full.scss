@@ -32,6 +32,7 @@ body {
             }
 
             .module-wapper {
+                margin: $margin-base;
                 background-color: $color-white;
                 border-radius: $radius-min;
                 .module-wapper-inner {

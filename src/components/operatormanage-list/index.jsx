@@ -39,7 +39,7 @@ class OperatormanageList extends React.Component {
             key: 'operate',
             render: () => (
                 <span>
-                    <a href="javascript:;">变更</a>
+                    <a href="javascript:;" onClick={this.goEdit.bind(this)}>变更</a>
                 </span>
             ),
         }];
@@ -61,7 +61,7 @@ class OperatormanageList extends React.Component {
             operation: '全国',
         }];
         return (
-            <div className='operatormanage-cont' style={{ padding: '0 20px' }}>
+            <div className='operatormanage-cont'>
                 <Table columns={columns} dataSource={data} />
             </div>
         )
@@ -69,6 +69,13 @@ class OperatormanageList extends React.Component {
     goCreate() {
         if (this.props.goCreate) {
             this.props.goCreate()
+        }
+    }
+    goEdit() {
+        //let id = this.props.params.id
+        let id = 666
+        if (this.props.goEdit) {
+            this.props.goEdit(id)
         }
     }
     render() {

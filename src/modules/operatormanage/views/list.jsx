@@ -10,6 +10,9 @@ class List extends React.Component {
     goCreate() {
         global.hashHistory.push(`operatormanage/create`)
     }
+    goEdit(id) {
+        global.hashHistory.push(`/operatormanage/edit/${id}`)
+    }
     componentWillMount() {
 
     }
@@ -21,7 +24,10 @@ class List extends React.Component {
                         <div className='module-wapper-inner'>
                             <SectionHeader title='操作员管理'></SectionHeader>
                             <section style={{ minHeight: `${window.innerHeight - 245}` }}>
-                                <OperatormanageList goCreate={this.goCreate} />
+                                <OperatormanageList
+                                    goCreate={this.goCreate}
+                                    goEdit={this.goEdit}
+                                />
                             </section>
                         </div>
                     </div>

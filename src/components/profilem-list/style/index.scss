@@ -1,15 +1,34 @@
 @import '../../../style/vars';
 @import '../../../style/neat/neat';
 
-.import-list {
-    .import-filter {
-        margin: 0 $margin-base;
-        // border-bottom: 1px solid $gray-lightest;
-        overflow: hidden;
+.import-table {
+    .ant-table-small .ant-table-body > table {
+        border: 0;
+        padding: 0;
+    }
+    .panel{
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 0 $padding-base $padding-base $padding-base;
+        label {
+            margin-right: $margin-base;
+            input{
+                width: 60px;
+            }
+        }
+        .float-l {
+            float: left;
+        }
+        .clear {
+            clear: both;
+        }
         .ant-table-pagination {
             float: inherit;
             text-align: center;
-        }       
+        }
+    }
+    .firstTable{
+        margin: $margin-base 0;
     }
 }
 

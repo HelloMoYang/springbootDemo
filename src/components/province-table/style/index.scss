@@ -5,15 +5,17 @@
   justify-content:space-between;
   align-items:center;
   border-top:1px solid #e0e0e0;
-  margin-top:$margin-min;
+  padding-top:$padding-base;
 }
 .editable-add-btn,.editable-refresh-btn {
-  margin-top: $margin-base;
+  margin: $margin-base 0;
 }
-.editable-row-text {
-  padding: 5px;
+.ant-table-wrapper{
+  margin-bottom: $margin-base;
 }
-
+.province-table{
+  padding: $padding-base 0;
+}
 .editable-row-operations a {
   margin-right: 8px;
 }

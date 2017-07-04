@@ -1,2 +1,17 @@
 @import '../../../style/vars';
 @import '../../../style/neat/neat';
+.ant-form-inline{
+    .ant-form-item{
+       margin-top:$margin-base; 
+    }
+} 
+.ant-modal-body{
+    padding:0 32px 16px 32px;
+}
+.ant-form-item-label{
+    width: 120px;
+    text-align: right;
+}
+.ant-form-item-control-wrapper{
+    width: 320px;
+}

@@ -77,7 +77,7 @@ class ProvinceTable extends React.Component {
     }, {
       title: '推送消息地址',
       dataIndex: 'address',
-      width: '30%',
+      width: '40%',
     }, {
       title: '操作',
       dataIndex: 'update',
@@ -147,7 +147,7 @@ class ProvinceTable extends React.Component {
     const { dataSource } = this.state;
     const columns = this.columns;
     return (
-      <div>
+      <div className='province-table'>
         <Table bordered dataSource={dataSource} columns={columns} />
         <Modal
           title="数据更新"

@@ -9,12 +9,4 @@ export default [
         path: 'list',
         component: List
     },
-    {
-        path: 'export/list',
-        component: Export
-    },
-    {
-        path: 'seek/list',
-        component: Seek
-    },
 ]

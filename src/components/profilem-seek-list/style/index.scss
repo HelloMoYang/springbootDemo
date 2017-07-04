@@ -1,15 +1,20 @@
 @import '../../../style/vars';
 @import '../../../style/neat/neat';
 
-.seek-list {
-    .seek-filter {
-        margin: 0 $margin-base;
-        // border-bottom: 1px solid $gray-lightest;
-        overflow: hidden;
-        .ant-table-pagination {
-            float: inherit;
-            text-align: center;
-        }       
+.seek-table {
+    .ant-table-small .ant-table-header > table, .ant-table-small .ant-table-body > table{
+        padding:0
+    }
+    .firstTable{
+        margin: 15px 0;
+    }
+    .panel{
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 0 $padding-base $padding-base $padding-base;
+        .border-b {
+            border-bottom: 2px solid #000;
+        }
     }
 }
 

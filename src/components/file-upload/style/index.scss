@@ -1,0 +1,25 @@
+@import '../../../style/vars';
+@import '../../../style/neat/neat'; //== AvatarUpload
+
+.resources-thumbnail-upload {
+    font-size: $tabbar-item-fontsite;
+    margin: 0 0 $margin-min 0;
+    .avatar-uploader {
+        display: block;
+        cursor: pointer;
+        .ant-btn{
+            margin-top: $margin-min;
+            border-color: $gray-lighter;
+        }
+    }
+    .upload-list-inline .ant-upload-list-item {
+        margin-right: $margin-min;
+        width: 50%;
+    }
+    .upload-list-inline .ant-upload-animate-enter {
+        animation-name: uploadAnimateInlineIn;
+    }
+    .upload-list-inline .ant-upload-animate-leave {
+        animation-name: uploadAnimateInlineOut;
+    }
+}

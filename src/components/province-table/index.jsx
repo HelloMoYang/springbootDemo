@@ -17,53 +17,42 @@ const confirm = Modal.confirm;
 class EditableCell extends React.Component {
   state = {
     value: this.props.value,
-    editable: this.props.editable || false,
+    editable: false,
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.editable !== this.state.editable) {
-      this.setState({ editable: nextProps.editable });
-      if (nextProps.editable) {
-        this.cacheValue = this.state.value;
-      }
-    }
-    if (nextProps.status && nextProps.status !== this.props.status) {
-      if (nextProps.status === 'save') {
-        this.props.onChange(this.state.value);
-      } else if (nextProps.status === 'cancel') {
-        this.setState({ value: this.cacheValue });
-        this.props.onChange(this.cacheValue);
-      }
-    }
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.editable !== this.state.editable ||
-      nextState.value !== this.state.value;
-  }
-  handleChange(e) {
+  handleChange = (e) => {
     const value = e.target.value;
     this.setState({ value });
   }
+  check = () => {
+    this.setState({ editable: false });
+    if (this.props.onChange) {
+      this.props.onChange(this.state.value);
+    }
+  }
+
   render() {
     const { value, editable } = this.state;
     return (
-      <div>
+      <div className="editable-cell">
         {
           editable ?
-            <div>
+            <div className="editable-cell-input-wrapper">
               <Input
                 value={value}
-                onChange={e => this.handleChange(e)}
+                onChange={this.handleChange}
+                onPressEnter={this.check}
               />
             </div>
             :
-            <div className="editable-row-text">
-              {value.toString() || ' '}
+            <div className="editable-cell-text-wrapper">
+              {value || ' '}
             </div>
         }
       </div>
     );
   }
 }
+
 class ProvinceTable extends React.Component {
   constructor(props) {
     super(props);
@@ -71,157 +60,79 @@ class ProvinceTable extends React.Component {
       title: '省份卡平台ID',
       dataIndex: 'cardId',
       width: '15%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'cardId', text),
+      render: (text, record, index) => (
+        <EditableCell
+          value={text}
+          onChange={this.onCellChange(index, 'cardId')}
+        />
+      ),
     }, {
       title: '省份网状网ID',
       dataIndex: 'netId',
       width: '15%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'netId', text),
     }, {
       title: '省份名称',
       dataIndex: 'name',
       width: '15%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'name', text),
     }, {
       title: '推送消息地址',
       dataIndex: 'address',
-      width: '30%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'address', text),
+      width: '40%',
     }, {
-      title: '编辑',
-      dataIndex: 'edit',
-      render: (text, record, index) => {
-        const { editable } = this.state.data[index].name;
+      title: '操作',
+      dataIndex: 'update',
+      render: () => {
         return (
-          <div className="editable-row-dels">
-            {
-              editable ?
-                <span>
-                  <a onClick={() => this.editDone(index, 'save')}>Save</a>
-                  <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
-                    <a>Cancel</a>
-                  </Popconfirm>
-                </span>
-                :
-                <span>
-                  <a onClick={() => this.edit(index)}>Edit</a>
-                </span>
-            }
-          </div>
-        );
+          <span>
+            <a href="javascript:;" onClick={this.showModal}>编辑</a>
+          </span>
+        )
+
       }
     }, {
-      title: '删除',
+      title: '操作',
       dataIndex: 'del',
       render: (text, record, index) => {
         return (
-          this.state.data.length > 1 ?
+          this.state.dataSource.length > 1 ?
             (
               <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(index)}>
-                <a href="#">Delete</a>
+                <a href="#">删除</a>
               </Popconfirm>
             ) : null
         );
       },
     }];
+
     this.state = {
-      data: [{
+      dataSource: [{
         key: '0',
-        cardId: {
-          editable: false,
-          value: '32',
-        },
-        netId: {
-          editable: false,
-          value: '10',
-        },
-        name: {
-          editable: false,
-          value: 'Edward King 0',
-        },
-        address: {
-          editable: false,
-          value: 'http://211.149.154.87/poc/smdp.git',
-        },
+        cardId: '01',
+        netId: '11',
+        name: '河北',
+        address: 'https://ant.design/components/table-cn/',
       }, {
         key: '1',
-        cardId: {
-          editable: false,
-          value: '32',
-        },
-        netId: {
-          editable: false,
-          value: '10',
-        },
-        name: {
-          editable: false,
-          value: 'Edward King 0',
-        },
-        address: {
-          editable: false,
-          value: 'http://211.149.154.87/poc/smdp.git',
-        },
+        cardId: '02',
+        netId: '22',
+        name: '山西',
+        address: 'https://ant.design/',
       }],
       count: 2,
     };
   }
-  renderColumns(data, index, key, text) {
-    const { editable, status } = data[index][key];
-    if (typeof editable === 'undefined') {
-      return text;
-    }
-    return (<EditableCell
-      editable={editable}
-      value={text}
-      onChange={value => this.handleChange(key, index, value)}
-      status={status}
-
-    />);
-  }
-  handleChange(key, index, value) {
-    const { data } = this.state;
-    data[index][key].value = value;
-    this.setState({ data });
-  }
-  edit(index) {
-    const { data } = this.state;
-    Object.keys(data[index]).forEach((item) => {
-      if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-        data[index][item].editable = true;
-      }
-    });
-    this.setState({ data });
-  }
-  editDone(index, type) {
-    const { data } = this.state;
-    Object.keys(data[index]).forEach((item) => {
-      if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-        data[index][item].editable = false;
-        data[index][item].status = type;
-      }
-    });
-    this.setState({ data }, () => {
-      Object.keys(data[index]).forEach((item) => {
-        if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-          delete data[index][item].status;
-        }
-      });
-    });
+  onCellChange = (index, key) => {
+    return (value) => {
+      const dataSource = [...this.state.dataSource];
+      dataSource[index][key] = value;
+      this.setState({ dataSource });
+    };
   }
   onDelete = (index) => {
-    const data = [...this.state.data];
-    data.splice(index, 1);
-    this.setState({ data }, () => {
-      if (Object.keys(data[index]).length >= 2) {
-        Object.keys(data[index]).forEach((item) => {
-          if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-            delete data[index][item].status;
-          }
-        });
-      }
-    });
+    const dataSource = [...this.state.dataSource];
+    dataSource.splice(index, 1);
+    this.setState({ dataSource });
   }
-  // state = { visible: false }
   showModal = () => {
     this.setState({
       visible: true,
@@ -232,41 +143,14 @@ class ProvinceTable extends React.Component {
       visible: false,
     });
   }
-  handleAdd = () => {
-    // const { count, data} = this.state;
-    // const newData = {
-    //     key: count,
-    //     cardId: ` `,
-    //     netId:` `,
-    //     name:``,
-    //     address: `11111 ${count}`,
-    // };
-    // this.setState({
-    //     data: [...data, newData],
-    //     count: count + 1,
-    // });
-
-  }
   render() {
-    const { data } = this.state;
-    const dataSource = data.map((item) => {
-      const obj = {};
-      Object.keys(item).forEach((key) => {
-        obj[key] = key === 'key' ? item[key] : item[key].value;
-      });
-      return obj;
-    });
+    const { dataSource } = this.state;
     const columns = this.columns;
-    // return <Table bordered dataSource={dataSource} columns={columns} />;
     return (
-      <div>
-        <Table bordered dataSource={dataSource} columns={columns} pagination={false} />
-        <div className='data-btn'>
-          <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>
-          <Button className="editable-add-btn" >刷新省数据</Button>
-        </div>
+      <div className='province-table'>
+        <Table bordered dataSource={dataSource} columns={columns} />
         <Modal
-          title="新增"
+          title="数据更新"
           visible={this.state.visible}
           onOk={this.hideModal}
           onCancel={this.hideModal}
@@ -276,10 +160,14 @@ class ProvinceTable extends React.Component {
         >
           <ProvinceForm />
         </Modal>
-
+        <div className='data-btn'>
+          <Button className="editable-add-btn" onClick={this.showModal}>新增省数据</Button>
+          <Button className="editable-refresh-btn" >刷新省数据</Button>
+        </div>
       </div>
     );
   }
+
 }
 
 export default ProvinceTable;

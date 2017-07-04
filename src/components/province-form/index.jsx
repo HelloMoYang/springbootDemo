@@ -1,68 +1,95 @@
 import * as React from 'react';
 import * as Form from 'antd/lib/form'
 import 'antd/lib/form/style'
-import * as Row from 'antd/lib/row'
-import 'antd/lib/row/style'
-import * as Col from 'antd/lib/col'
-import 'antd/lib/col/style'
-import * as Button from 'antd/lib/button'
-import 'antd/lib/button/style'
 import * as Input from 'antd/lib/input'
 import 'antd/lib/input/style'
 import './style/index'
 const FormItem = Form.Item;
 
+const CustomizedForm = Form.create({
+  onFieldsChange(props, changedFields) {
+    props.onChange(changedFields);
+  },
+  mapPropsToFields(props) {
+    return {
+      cardId: {
+        ...props.cardId,
+        value: props.cardId.value
+      },
+      netId: {
+        ...props.netId,
+        value: props.netId.value
+      },
+      name: {
+        ...props.name,
+        value: props.name.value
+      },
+      address: {
+        ...props.address,
+        value: props.address.value
+      },
+    };
+  },
+  onValuesChange(_, values) {
+    console.log(values);
+  },
+})((props) => {
+  const { getFieldDecorator } = props.form;
+  return (
+    <Form layout="inline">
+      <FormItem label="省份卡平台ID">
+        {getFieldDecorator('cardId', {
+          rules: [{ required: true, message: 'CardId is required!' }],
+        })(<Input />)}
+      </FormItem>
+      <FormItem label="省份网状网ID">
+        {getFieldDecorator('netId', {
+          rules: [{ required: true, message: 'NetId is required!' }],
+        })(<Input />)}
+      </FormItem>
+      <FormItem label="省份名称">
+        {getFieldDecorator('name', {
+          rules: [{ required: true, message: 'Name is required!' }],
+        })(<Input />)}
+      </FormItem>
+      <FormItem label="推送消息地址">
+        {getFieldDecorator('address', {
+          rules: [{ required: true, message: 'Address is required!' }],
+        })(<Input />)}
+      </FormItem>
+    </Form>
+  );
+});
 
 class ProvinceForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      formLayout: 'horizontal',
-    };
-  }
-  handleFormLayoutChange = (e) => {
-    this.setState({ formLayout: e.target.value });
+  state = {
+    fields: {
+      cardId: {
+        value: '01',
+      },
+      netId: {
+        value: '11',
+      },
+      name: {
+        value: '北京',
+      },
+      address: {
+        value: 'https://ant.design/index-cn',
+      },
+    },
+  };
+  handleFormChange = (changedFields) => {
+    this.setState({
+      fields: { ...this.state.fields, ...changedFields },
+    });
   }
   render() {
-    const { formLayout } = this.state;
-    const formItemLayout = formLayout === 'horizontal' ? {
-      labelCol: { span: 6},
-      wrapperCol: { span: 16 },
-    } : null;
-    const buttonItemLayout = formLayout === 'horizontal' ? {
-      wrapperCol: { span: 20, offset: 4 },
-    } : null;
+    const fields = this.state.fields;
     return (
       <div>
-        <Form layout={formLayout}>
-          <FormItem
-            label="省份卡平台ID"
-            {...formItemLayout}
-          >
-            <Input placeholder="input placeholder" />
-          </FormItem>
-          <FormItem
-            label="省份网状网ID"
-            {...formItemLayout}
-          >
-            <Input placeholder="input placeholder" />
-          </FormItem>
-          <FormItem
-            label="省份名称"
-            {...formItemLayout}
-          >
-            <Input placeholder="input placeholder" />
-          </FormItem>
-          <FormItem
-            label="推送消息地址"
-            {...formItemLayout}
-          >
-            <Input placeholder="input placeholder" />
-          </FormItem>
-        </Form>
+        <CustomizedForm {...fields} onChange={this.handleFormChange} />
       </div>
     );
   }
 }
-
 export default ProvinceForm;

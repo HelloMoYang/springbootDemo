@@ -26,7 +26,7 @@ class ProvinceForm extends React.Component {
   render() {
     const { formLayout } = this.state;
     const formItemLayout = formLayout === 'horizontal' ? {
-      labelCol: { span: 6},
+      labelCol: { span: 6 },
       wrapperCol: { span: 16 },
     } : null;
     const buttonItemLayout = formLayout === 'horizontal' ? {
@@ -39,25 +39,25 @@ class ProvinceForm extends React.Component {
             label="省份卡平台ID"
             {...formItemLayout}
           >
-            <Input placeholder="input placeholder" />
+            <Input />
           </FormItem>
           <FormItem
             label="省份网状网ID"
             {...formItemLayout}
           >
-            <Input placeholder="input placeholder" />
+            <Input />
           </FormItem>
           <FormItem
             label="省份名称"
             {...formItemLayout}
           >
-            <Input placeholder="input placeholder" />
+            <Input />
           </FormItem>
           <FormItem
             label="推送消息地址"
             {...formItemLayout}
           >
-            <Input placeholder="input placeholder" />
+            <Input />
           </FormItem>
         </Form>
       </div>

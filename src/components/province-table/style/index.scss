@@ -4,6 +4,8 @@
   display:flex;
   justify-content:space-between;
   align-items:center;
+  border-top:1px solid #e0e0e0;
+  margin-top:$margin-min;
 }
 .editable-add-btn,.editable-refresh-btn {
   margin-top: $margin-base;
@@ -14,4 +16,14 @@
 
 .editable-row-operations a {
   margin-right: 8px;
+}
+.ant-table-thead{
+  tr{
+    th{
+        text-align:center;
+      }
+  } 
+}
+tr{
+  text-align:center;
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.boot.domain.GirlProperties;
 
-@RestController
+@RestController		//相当于@Controller+@Response，能够扫描加@RequestMapping注解的类及方法，并且能够将内容return到Response body中
 @RequestMapping("/hello")	//这样在类上也加映射，访问时需要将类和方法的映射路径拼接起来，如（/hello/say）
 public class HelloController {
 	

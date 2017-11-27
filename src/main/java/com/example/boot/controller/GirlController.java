@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.boot.domain.Girl;
 import com.example.boot.domain.GirlRepository;
+import com.example.boot.service.GirlService;
 
 @RestController
 public class GirlController {
@@ -25,6 +26,8 @@ public class GirlController {
 	@Autowired
 	private GirlRepository girlRepository;
 	
+	@Autowired
+	private GirlService girlService;
 	/*
 	 *	查询所有女生列表
 	 * */
@@ -73,5 +76,8 @@ public class GirlController {
 		return girlRepository.findByAge(age);
 	}
 	
-	
+	@PostMapping(value = "/girls/two")
+	public void insertTwo() {
+		girlService.insertTwo();
+	}
 }
